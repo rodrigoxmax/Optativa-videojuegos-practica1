@@ -6,19 +6,19 @@ public class Purchase {
 	private int quantity;
 	private double preciofianl;
 	
-public Purcharse(Customer customer,Game game,int quantity,double preciofianl) {
+public  Purchase(Customer customer,Game game,int quantity) {
 	this.customer=customer;
 	this.game=game;
 	this.quantity=quantity;
-	this.preciofianl=quantity*game.getprecio();
+	preciofianl=quantity*game.getprecio();
 	
 }
 public Customer getclient() {
 	return customer;
 	
 }
-public game getgame() {
-	return customer;
+public Game getgame() {
+	return game;
 	
 }
 public int getquantity() {

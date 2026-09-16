@@ -36,7 +36,7 @@ public int aumentStock(int aument) {
 	return subida;
 }
 public int restarStock(int dis) {
-	int disminu;
+	int disminu=0;;
 	if (stock >=0) {
 		disminu=stock-=dis;
 	}
@@ -51,11 +51,11 @@ public boolean Combrobardis(int stock) {
 	}
 	
 }
-public toString() {
-	"nombre "+titulo+"/ "+
-	"genero"+gnere+"/"+
-	"precio "+price+"/ "+
-	"Stock"+stock+"/"+
+
+@Override
+public String toString() {
+	return "Game [titulo=" + titulo + ", gnere=" + gnere + ", price=" + price + ", stock=" + stock + "]";
 }
+
 
 }
