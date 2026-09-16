@@ -1,5 +1,14 @@
 package projecto1;
 
-public class Genere {
+public enum Genere {
+	Action,
+	ADVENTURE,
+	RPG,
+	STRATEGY,
+	SPORTS,
+	SIMULATION,
+	PLATAFORM,
+	PUZZLE
+	
 
 }
