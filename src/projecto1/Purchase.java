@@ -10,7 +10,7 @@ public  Purchase(Customer customer,Game game,int quantity) {
 	this.customer=customer;
 	this.game=game;
 	this.quantity=quantity;
-	preciofianl=quantity*game.getprecio();
+	this.preciofianl=quantity*game.getprecio();
 	
 }
 public Customer getclient() {
@@ -28,5 +28,6 @@ public int getquantity() {
 public double getpreciofinal () {
 	return preciofianl;
 }
+
 
 }
