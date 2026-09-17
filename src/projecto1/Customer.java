@@ -1,10 +1,12 @@
 package projecto1;
 
 public class Customer extends Exception {
+	private static int cust=1;
 	private int id_customer;
 	private String name;
 	private double balance;
 public Customer ( String name, double balance) {
+	this.id_customer=cust++;
 	this.name=name;
 	this.balance=balance;
 }
