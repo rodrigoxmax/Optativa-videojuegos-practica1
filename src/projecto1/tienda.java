@@ -13,6 +13,22 @@ public tienda() {
 	this.purcharse = purcharse;
 }
 
+
+public ArrayList<Game> getGames() {
+	return games;
+}
+
+
+public ArrayList<Customer> getCustomers() {
+	return customers;
+}
+
+
+public ArrayList<Purchase> getPurcharse() {
+	return purcharse;
+}
+
+
 public void añadirjuego(Game game) {
 	games.add(game);
 }
@@ -25,7 +41,7 @@ public Game buscarjuego(int id) throws Exception {
 		
 	}
 	
-	throw new Exception("Nose encontro un id");
+	throw new Exception("No se encontro un id para el juego que buscas");
 	
 	
 	
@@ -61,8 +77,8 @@ public Game buscarjuegoporn(String N) {
 }
 public ArrayList<Game> busacalojuegos(Genere g1) {
 	ArrayList<Game> busqueda=new ArrayList<Game>();
-	for (Game B:games) {
-		if( B.getGnere().contains(g1)) {
+	for (Game  B: games ) {
+		if (B!=null && B.getGnere()!=null && B.getGnere().equals(g1)) {
 			busqueda.add(B);
 		}
 	}
@@ -70,31 +86,36 @@ public ArrayList<Game> busacalojuegos(Genere g1) {
 	
 }
 
-public void comprarjuego(int c, int g, int s) throws Exception {
+public void comprarjuego(int c, int g,double d, int s) throws Exception  {
 	
 	Customer cliente = buscarCliente(c);
     Game juego = buscarjuego(g);
     
     
-    if (c <= 0) {
-        throw new Exception("La cantidad solicitada no es válida.");
+    if (!customers.contains(cliente)) {
+    	System.out.println("El cliente no existe");
+        
     }
     
-    
-    if (juego.getstock() < s) {
-        throw new Exception("No hay stock suficiente para este videojuego.");
+    if (!games.contains(juego)) {
+    	System.out.println("juego no encontrado ");
+        
     }
     
-  
-    double costoTotal = juego.getprecio() * c ;
+
    
-    if (cliente.getbalace() < costoTotal) {
-        throw new Exception("El cliente no tiene saldo suficiente.");
+   boolean disponiblidad=juego.Combrobardis(s); 
+  
+    
+    if(disponiblidad) {
+    	System.out.println("El no hay stock disponible");
+    	
     }
     
+    double preciof=juego.getprecio()*s;
     
     juego.restarStock(s);
-    cliente.retirarbalance(costoTotal);
+    cliente.retirarbalance(preciof);
     
     
     Purchase nuevaCompra = new Purchase(cliente, juego, s);

@@ -38,23 +38,22 @@ public void setGnere(Genere gnere) {
 }
 
 public void setstock( int stock) {
-	stock=stock;
+	this.stock=stock;
 	
 }
-public int aumentStock(int aument) {
-	int subida=stock+aument;
-	return subida;
-}
-public int restarStock(int dis) {
-	int disminu=0;;
-	if (stock >=0) {
-		disminu=stock-dis;
+public void aumentStock(int aument) {
+	this.stock+=aument;
 	}
-	return disminu;
+public void restarStock(int dis) {
+	
+	if (stock >=0) {
+		this.stock-=dis;
+	}
+	
 	
 }
 public boolean Combrobardis(int stock) {
-	if ( stock <=1) {
+	if ( stock <=0) {
 		return false;
 	}else {
 		return true;

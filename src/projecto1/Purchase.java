@@ -10,7 +10,7 @@ public  Purchase(Customer customer,Game game,int quantity) {
 	this.customer=customer;
 	this.game=game;
 	this.quantity=quantity;
-	this.preciofianl=quantity*game.getprecio();
+	this.preciofianl=Calcularpreciofinal(quantity,game);
 	
 }
 public Customer getclient() {
@@ -28,6 +28,17 @@ public int getquantity() {
 public double getpreciofinal () {
 	return preciofianl;
 }
+public double Calcularpreciofinal(int q, Game G) {
+	
+	return q*game.getprecio();
+	
+}
+@Override
+public String toString() {
+	return "Purchase [customer=" + customer + ", game=" + game + ", quantity=" + quantity + ", preciofianl="
+			+ preciofianl + "]";
+}
+
 
 
 }
