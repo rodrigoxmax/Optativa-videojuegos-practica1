@@ -32,28 +32,26 @@ public String  getnombre() {
 public double getbalace() {
 	return id_customer;
 }
-public void añadirb (double d) {
+public void añadirb (double d) throws Exception {
+	if (d<0) throw new Exception("cantidad invalida");
 	 this.balance=+d;
 }
-public void retirarbalance(double balanceresto) {
+public void retirarbalance(double balanceresto) throws Exception {
 	
-		
-
+		if (balanceresto<0) throw new Exception("cantidad invalida");
+		if (balanceresto>balance) throw new Exception("cantidad invalida");
 		this.balance-=balanceresto;
 }
 
-public void comprobar (double precio) throws Exception {
-	
-		
-	if(balance<precio) {
-		throw new  Exception ("no puedes comprar con el saldo actual que tienes ");
-	}
-	System.out.println("puedes comprar");
+public boolean comprobar (double precio)  {
+	return balance>=precio;
 	
 }
+
+@Override
 public String toString() {
-	return "Nombre"+name+"saldo"+balance;
-	
+	return "Customer [id_customer=" + id_customer + ", name=" + name + ", balance=" + balance + "]";
 }
+
 
 }

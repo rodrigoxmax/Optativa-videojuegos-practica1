@@ -29,10 +29,16 @@ public ArrayList<Purchase> getPurcharse() {
 }
 
 
-public void añadirjuego(Game game) {
+public void añadirjuego(Game game) throws Exception {
+	for(Game juego: games) {
+		if(game.getid()==juego.getid()) throw new Exception("El juego no puede tener el mismo id");
+	}
 	games.add(game);
 }
-public Game buscarjuego(int id) throws Exception {
+public void añadircliente(Customer cliente) {
+	customers.add(cliente);
+}
+public Game buscarjuego(int id) throws exceptionnoencuentraid {
 	
 	for(Game E: games) {
 		if(E.getid()==id) {
@@ -41,7 +47,7 @@ public Game buscarjuego(int id) throws Exception {
 		
 	}
 	
-	throw new Exception("No se encontro un id para el juego que buscas");
+	throw new exceptionnoencuentraid();
 	
 	
 	
@@ -62,15 +68,16 @@ public Customer buscarCliente (int id_cliente ) throws Exception {
 	throw new Exception("No se encontro el cliente");
 	
 }
-public Game buscarjuegoporn(String N) {
-	String Nombre=" ";
+public ArrayList<Game> buscarjuegoporn(String N) {
+	ArrayList<Game> busquedaj=new ArrayList<Game>();
+	String Nombre=N.toLowerCase();
 	for(Game G:games) {
-		if(G.gettitulo().contains(N.trim())) {
-			return G;
+		if(G.gettitulo().toLowerCase().contains(N.trim())) {
+			 busquedaj.add(G);
 		}
 	}
 	System.out.println("no se encontro Ningun juego");
-	return null;
+	return busquedaj ;
 	
 	
 	
@@ -86,7 +93,7 @@ public ArrayList<Game> busacalojuegos(Genere g1) {
 	
 }
 
-public void comprarjuego(int c, int g,double d, int s) throws Exception  {
+public void comprarjuego(int c, int g, int s) throws Exception  {
 	
 	Customer cliente = buscarCliente(c);
     Game juego = buscarjuego(g);
@@ -107,12 +114,13 @@ public void comprarjuego(int c, int g,double d, int s) throws Exception  {
    boolean disponiblidad=juego.Combrobardis(s); 
   
     
-    if(disponiblidad) {
+    if(!disponiblidad) {
     	System.out.println("El no hay stock disponible");
     	
     }
     
     double preciof=juego.getprecio()*s;
+    if(cliente.comprobar(preciof)) throw  new Exception("no hay stock");
     
     juego.restarStock(s);
     cliente.retirarbalance(preciof);

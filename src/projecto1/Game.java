@@ -41,30 +41,36 @@ public void setstock( int stock) {
 	this.stock=stock;
 	
 }
-public void aumentStock(int aument) {
+public void aumentStock(int aument) throws Exception {
+	if(aument<0) throw new Exception("cantidad invalida");
 	this.stock+=aument;
 	}
-public void restarStock(int dis) {
+public void restarStock(int dis)throws Exception {
 	
-	if (stock >=0) {
+	if (dis<0) throw new Exception("cantidad invalida");
+	if (dis>stock) throw new Exception("cantidad invalida");
 		this.stock-=dis;
-	}
 	
+
+		
 	
 }
-public boolean Combrobardis(int stock) {
-	if ( stock <=0) {
-		return false;
-	}else {
-		return true;
-	}
-	
+
+public void modificarStock(int cantidad) throws Exception {
+	if (cantidad<0) return;
+	this.stock=cantidad;
+}
+public boolean Combrobardis(int cantidad) {
+	return stock >=cantidad;
 }
 
 @Override
 public String toString() {
-	return "Game [titulo=" + titulo + ", gnere=" + gnere + ", price=" + price + ", stock=" + stock + "]";
+	return "Game [id_game=" + id_game + ", titulo=" + titulo + ", gnere=" + gnere + ", price=" + price + ", stock="
+			+ stock + "]";
 }
+
+
 
 
 }

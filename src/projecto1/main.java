@@ -25,18 +25,22 @@ public class main {
 		case 2:
 			System.out.println("Dame un id de un juego");
 			int id_game=sc.nextInt();
-			
+			Game juegoid=null;
 			try {
 				
-			 tienda1.buscarjuego(id_game);
-			}catch(Exception e) {
-				System.out.println(e.getMessage());
+			 juegoid=tienda1.buscarjuego(id_game);
+			 System.out.println(juegoid.toString());
+			}catch(exceptionnoencuentraid et) {
+				System.out.println(et.getMessage());
 				
 			}
-			System.out.println(tienda1.buscarjuego(id_game));
+			
+		
 
 			
 			break;
+		case 3:
+			
 			
 		}
 			
