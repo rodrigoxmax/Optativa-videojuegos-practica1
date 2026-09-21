@@ -10,6 +10,12 @@ public Customer ( String name, double balance) {
 	this.name=name;
 	this.balance=balance;
 }
+public Customer (int id, String name, double balance) {
+	this.id_customer=cust++;
+	this.name=name;
+	this.balance=balance;
+}
+
 
 public void setId_customer(int id_customer) {
 	this.id_customer = id_customer;

@@ -15,6 +15,15 @@ public Game (String titulo, Genere gnere, double price, int stock) {
 	this.stock=stock;
 	
 }
+public Game (int id_game,String titulo, Genere gnere, double price, int stock) {
+	this.id_game=contador++;
+	this.titulo=titulo;
+	this.gnere=gnere;
+	this.price=price;
+	this.stock=stock;
+	
+}
+
 
 public int getid() {
 	return id_game;

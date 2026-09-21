@@ -1,4 +1,5 @@
 package projecto1;
+import java.io.File;
 import java.util.*;
 public class tienda extends Exception  {
 private ArrayList<Game> games=new ArrayList<Game>();
@@ -72,13 +73,60 @@ public ArrayList<Game> buscarjuegoporn(String N) {
 	ArrayList<Game> busquedaj=new ArrayList<Game>();
 	String Nombre=N.toLowerCase();
 	for(Game G:games) {
-		if(G.gettitulo().toLowerCase().contains(N.trim())) {
+		if(G.gettitulo().toLowerCase().contains(N)) {
 			 busquedaj.add(G);
 		}
 	}
 	System.out.println("no se encontro Ningun juego");
 	return busquedaj ;
 	
+	
+	
+}
+public void loadGAmes(String filename) throws Exception {
+	File f=new File (filename);
+	try(Scanner scanner =new Scanner(f)) {
+		String line=null;
+		while(scanner.hasNextLine()) {
+			
+			line= scanner.nextLine();
+			String [] spliteline=line.split(";");
+			int id=Integer.parseInt(spliteline[0]);
+			String name=spliteline[1];
+			Genere genere=Genere.valueOf(spliteline[2]);
+			double price=Double.parseDouble(spliteline[3]);
+			int stock=Integer.parseInt(spliteline[4]);
+			Game g=new Game(id,name,genere,price,stock);
+			games.add(g);
+		}
+		
+	}
+	catch(Exception e) {
+		
+	}
+	
+}
+public void loadCustomers(String filename)throws Exception {
+	File f1=new File (filename);
+	try(Scanner scanner =new Scanner(f1)) {
+		String line2=null;
+		while(scanner.hasNextLine()) {
+			
+			line2= scanner.nextLine();
+			String [] spliteline2=line2.split(";");
+			int id1=Integer.parseInt(spliteline2[0]);
+			String name1=spliteline2[1];
+			
+			double price1=Double.parseDouble(spliteline2[2]);
+			
+			Customer c=new Customer(id1,name1,price1);
+			customers.add(c);
+		}
+		
+	}
+	catch(Exception e) {
+		
+	}
 	
 	
 }
@@ -120,7 +168,7 @@ public void comprarjuego(int c, int g, int s) throws Exception  {
     }
     
     double preciof=juego.getprecio()*s;
-    if(cliente.comprobar(preciof)) throw  new Exception("no hay stock");
+    if(!cliente.comprobar(preciof)) throw  new Exception("No hay stock");
     
     juego.restarStock(s);
     cliente.retirarbalance(preciof);

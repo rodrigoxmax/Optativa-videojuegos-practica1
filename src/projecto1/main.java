@@ -7,6 +7,14 @@ public class main {
 		
 		
 		tienda tienda1=new tienda();
+		try {
+			tienda1.loadCustomers("customers.txt");
+			tienda1.loadGAmes("games.txt");
+			
+		}catch(Exception e) {
+			System.out.println("No se puedo hacer");
+		}
+	
 		
 		tienda1.añadirjuego(new Game("Super Mario",Genere.PLATAFORM,20,3));
 		tienda1.añadirjuego(new Game("Zelda:Ocarina of time",Genere.ADVENTURE,30,4));
@@ -40,6 +48,14 @@ public class main {
 			
 			break;
 		case 3:
+			System.out.println(tienda1.getCustomers());
+			break;
+		case 4:
+			System.out.println("dime un nombre");
+			String n=sc.next();
+			System.out.println(tienda1.buscarjuegoporn(n));
+			break;
+			
 			
 			
 		}
